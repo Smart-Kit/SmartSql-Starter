@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Starter.Entitiy", "SmartSql.Starter.Entitiy\SmartSql.Starter.Entitiy.csproj", "{88A185DB-0242-4843-9284-334850FF611C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Starter.Repository", "SmartSql.Starter.Repository\SmartSql.Starter.Repository.csproj", "{6A7E8C9E-6A9F-49FD-AD48-F297E515EB10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Starter.Service", "SmartSql.Starter.Service\SmartSql.Starter.Service.csproj", "{D274EF03-E956-40EF-B874-58A5FBE83A00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Starter.API", "SmartSql.Starter.API\SmartSql.Starter.API.csproj", "{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{20C12BB6-7202-46F4-9A92-3528FFC2B91B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Starter.API.Message", "SmartSql.Starter.API.Message\SmartSql.Starter.API.Message.csproj", "{5E18362E-CE15-41A5-9850-B3CF6AE59548}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88A185DB-0242-4843-9284-334850FF611C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A185DB-0242-4843-9284-334850FF611C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A185DB-0242-4843-9284-334850FF611C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A185DB-0242-4843-9284-334850FF611C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7E8C9E-6A9F-49FD-AD48-F297E515EB10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7E8C9E-6A9F-49FD-AD48-F297E515EB10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7E8C9E-6A9F-49FD-AD48-F297E515EB10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7E8C9E-6A9F-49FD-AD48-F297E515EB10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D274EF03-E956-40EF-B874-58A5FBE83A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D274EF03-E956-40EF-B874-58A5FBE83A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D274EF03-E956-40EF-B874-58A5FBE83A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D274EF03-E956-40EF-B874-58A5FBE83A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E18362E-CE15-41A5-9850-B3CF6AE59548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E18362E-CE15-41A5-9850-B3CF6AE59548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E18362E-CE15-41A5-9850-B3CF6AE59548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E18362E-CE15-41A5-9850-B3CF6AE59548}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEA52B07-9E7F-4A4D-AF6D-4C43E7255D0E} = {20C12BB6-7202-46F4-9A92-3528FFC2B91B}
+		{5E18362E-CE15-41A5-9850-B3CF6AE59548} = {20C12BB6-7202-46F4-9A92-3528FFC2B91B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8296E8E4-0112-4F33-81BF-EA5AC94417E0}
+	EndGlobalSection
+EndGlobal

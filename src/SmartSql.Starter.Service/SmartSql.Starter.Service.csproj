@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartSql.Starter.API.Message\SmartSql.Starter.API.Message.csproj" />
+    <ProjectReference Include="..\SmartSql.Starter.Entitiy\SmartSql.Starter.Entitiy.csproj" />
+    <ProjectReference Include="..\SmartSql.Starter.Repository\SmartSql.Starter.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

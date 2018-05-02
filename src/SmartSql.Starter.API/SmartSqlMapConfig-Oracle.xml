@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
+  <Settings
+     IsWatchConfigFile="true"
+  />
+  <Database>
+    <!--ParameterPrefix:[SqlServer:@ | MySQL:? |Oracle::] -->
+    <DbProvider Name="OracleClientFactory" ParameterPrefix=":" Type="Oracle.ManagedDataAccess.Client.OracleClientFactory,Oracle.ManagedDataAccess"/>
+    <Write Name="WriteDB" ConnectionString="User Id=User;Password=User;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=SmartSqlStarterDB)));"/>
+  </Database>
+  <SmartSqlMaps>
+    <SmartSqlMap Path="Maps-Oracle" Type="Directory"></SmartSqlMap>
+  </SmartSqlMaps>
+</SmartSqlMapConfig>

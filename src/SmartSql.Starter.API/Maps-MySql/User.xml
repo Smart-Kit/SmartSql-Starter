@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMap Scope="User"  xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+  <Statements>
+    <Statement Id="QueryParams">
+      <Where>
+        <IsNotEmpty Prepend="And" Property="UserName">
+          T.UserName Like Concat('%',$UserName,'%')
+        </IsNotEmpty>
+      </Where>
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.Id Desc
+        </Default>
+      </Switch>
+    </Statement>
+    <Statement Id="Add">
+      Insert Into T_User
+      (UserName
+      ,Password
+      ,Status
+      ,LastLoginTime
+      ,CreationTime)
+      Values
+      ($UserName
+      ,$Password
+      ,$Status
+      ,$LastLoginTime
+      ,$CreationTime)
+      ;Select Last_Insert_Id();
+    </Statement>
+    <Statement Id="Remove">
+
+    </Statement>
+    <Statement Id="Update">
+
+    </Statement>
+    <Statement Id="DyUpdate">
+
+    </Statement>
+    <Statement Id="Query">
+      Select T.* From T_User T
+      <Include RefId="QueryParams"></Include>
+      <IsNotEmpty Prepend="Limit" Property="Taken">$Taken</IsNotEmpty>
+    </Statement>
+    <Statement Id="QueryByPage">
+      Select T.*
+      From T_User T
+      <Include RefId="QueryParams"/>
+      Limit ?Offset,?PageSize
+    </Statement>
+    <Statement Id="GetRecord">
+      Select Count(T.Id) From T_User T
+      <Include RefId="QueryParams"></Include>
+    </Statement>
+    <Statement Id="Exists">
+      Select Count(T.Id) From T_User T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="UserName">
+          T.UserName=$UserName
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+  </Statements>
+</SmartSqlMap>

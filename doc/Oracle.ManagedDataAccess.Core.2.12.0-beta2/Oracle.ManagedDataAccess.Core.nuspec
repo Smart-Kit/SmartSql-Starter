@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>Oracle.ManagedDataAccess.Core</id>
+        <version>2.12.0-beta2</version>
+        <title>Oracle Data Provider for .Net Core</title>
+        <authors>Oracle</authors>
+        <owners>Oracle</owners>
+        <licenseUrl>http://www.oracle.com/technetwork/licenses/ea-license-152003.html</licenseUrl>
+        <iconUrl>http://www.oracle.com/technetwork/topics/dotnet/products/oracle12c-2402760.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Oracle Data Provider for .NET (ODP.NET) Core is an ADO.NET driver that provides fast data access from Microsoft .NET Core clients to Oracle databases. ODP.NET Core consists of a single 100% managed code dynamic-link library.</description>
+        <summary>Oracle Data Provider for .NET Core for Oracle Database</summary>
+        <copyright>2018</copyright>
+        <tags>ODP.NET Oracle DB database Core</tags>
+    </metadata>
+</package>

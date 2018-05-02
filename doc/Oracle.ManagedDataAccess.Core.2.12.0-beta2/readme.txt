@@ -1,0 +1,1 @@
+There are no ODP.NET Core Beta README items. For documentation, see the ODP.NET Core documentation PDF file included with this package located in C:\Users\<username>\.nuget\packages\oracle.manageddataaccess.core\2.12.0-beta2\

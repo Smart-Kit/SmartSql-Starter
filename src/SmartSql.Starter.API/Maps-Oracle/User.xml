@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMap Scope="User"  xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+  <Statements>
+    <Statement Id="QueryParams">
+      <Where>
+
+      </Where>
+    </Statement>
+    <Statement Id="Add">
+      Insert Into T_User
+      (UserName
+      ,Password
+      ,Status
+      ,LastLoginTime
+      ,CreationTime)
+      Values
+      (@UserName
+      ,@Password
+      ,@Status
+      ,@LastLoginTime
+      ,@CreationTime)
+    </Statement>
+    <Statement Id="Remove">
+
+    </Statement>
+    <Statement Id="Update">
+
+    </Statement>
+    <Statement Id="DyUpdate">
+
+    </Statement>
+    <Statement Id="Query">
+      Select T.* From T_User T
+      <Include RefId="QueryParams"></Include>
+    </Statement>
+    <Statement Id="QueryByPage">
+
+    </Statement>
+    <Statement Id="GetRecord">
+      Select Count(T.Id) From T_User T
+      <Include RefId="QueryParams"></Include>
+    </Statement>
+  </Statements>
+</SmartSqlMap>
