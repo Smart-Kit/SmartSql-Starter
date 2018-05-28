@@ -44,10 +44,9 @@ namespace SmartSql.Starter.API
 
         private void RegisterRepository(IServiceCollection services)
         {
-            services.AddSingleton(sp =>
+            services.AddSmartSql(new SmartSqlOptions
             {
-                var loggerFactory = sp.GetRequiredService<ILoggerFactory>();
-                return MapperContainer.Instance.GetSqlMapper(loggerFactory, "SmartSqlMapConfig-MySql.xml");
+                ConfigPath = "SmartSqlMapConfig-MySql.xml"
             });
             services.AddRepositoryFactory();
             services.AddRepositoryFromAssembly((options) =>
