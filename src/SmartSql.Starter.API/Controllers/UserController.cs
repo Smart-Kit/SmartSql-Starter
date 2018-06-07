@@ -14,13 +14,13 @@ namespace SmartSql.Starter.API.Controllers
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
-        private readonly UserService userService;
-        private readonly IUserRepository userRepository;
+        private readonly UserService _userService;
+        private readonly IUserRepository _userRepository;
 
         public UserController(UserService userService, IUserRepository userRepository)
         {
-            this.userService = userService;
-            this.userRepository = userRepository;
+            this._userService = userService;
+            this._userRepository = userRepository;
         }
         /// <summary>
         /// Add
@@ -30,7 +30,7 @@ namespace SmartSql.Starter.API.Controllers
         [HttpPost]
         public ResponseMessageWraper<long> Add([FromBody]AddRequest request)
         {
-            var userId = userService.Add(request);
+            var userId = _userService.Add(request);
             return new ResponseMessageWraper<long>
             {
                 Body = userId
@@ -44,7 +44,7 @@ namespace SmartSql.Starter.API.Controllers
         [HttpPost]
         public ResponseMessageWraper<QueryResponse<Item>> Query([FromBody]QueryRequest request)
         {
-            var list = userRepository.Query<Item>(request);
+            var list = _userRepository.Query<Item>(request);
             return new ResponseMessageWraper<QueryResponse<Item>>
             {
                 Body = new QueryResponse<Item>
@@ -61,8 +61,8 @@ namespace SmartSql.Starter.API.Controllers
         [HttpPost]
         public ResponseMessageWraper<QueryByPageResponse<Item>> QueryByPage([FromBody] Message.Request.User.QueryByPageRequest request)
         {
-            var list = userRepository.QueryByPage<Item>(request);
-            var total = userRepository.GetRecord(request);
+            var list = _userRepository.QueryByPage<Item>(request);
+            var total = _userRepository.GetRecord(request);
             return new ResponseMessageWraper<QueryByPageResponse<Item>>
             {
                 Body = new QueryByPageResponse<Item>
