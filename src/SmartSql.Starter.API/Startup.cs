@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,7 +35,8 @@ namespace SmartSql.Starter.API
             {
                 options.Filters.Add<ExceptionFilter>();
                 options.Filters.Add<ValidateModelFilter>();
-            });
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Latest);
             RegisterRepository(services);
             RegisterService(services);
             RegisterSwagger(services);
@@ -44,14 +46,7 @@ namespace SmartSql.Starter.API
 
         private void RegisterRepository(IServiceCollection services)
         {
-            services.AddSmartSql(sp =>
-            {
-                return new SmartSqlOptions
-                {
-                    ConfigPath = "SmartSqlMapConfig-MySql.xml",
-                    LoggerFactory = sp.GetService<ILoggerFactory>()
-                };
-            });
+            services.AddSmartSql();
             services.AddRepositoryFactory();
             services.AddRepositoryFromAssembly((options) =>
             {

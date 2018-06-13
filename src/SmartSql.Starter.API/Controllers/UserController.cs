@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartSql.Starter.API.Message;
 using SmartSql.Starter.API.Message.Request.User;
 using SmartSql.Starter.API.Message.Response.User;
+using SmartSql.Starter.Entitiy;
 using SmartSql.Starter.Repository;
 using SmartSql.Starter.Service;
 
@@ -70,6 +71,14 @@ namespace SmartSql.Starter.API.Controllers
                     List = list,
                     Total = total
                 }
+            };
+        }
+        [HttpPost]
+        public ResponseMessageWraper<User> GetById([FromBody]GetByIdRequest reqMsg)
+        {
+            return new ResponseMessageWraper<User>
+            {
+                Body = _userRepository.GetById(reqMsg.Id)
             };
         }
     }

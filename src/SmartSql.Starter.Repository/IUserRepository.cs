@@ -20,5 +20,7 @@ namespace SmartSql.Starter.Repository
         int GetRecord(object reqParams);
         [Statement(Execute = ExecuteBehavior.ExecuteScalar)]
         int Exists(object reqParams);
+        [Statement(Sql = "Select Top 1 T.* From T_User T Where T.Id=@id")]
+        User GetById(long id);
     }
 }
