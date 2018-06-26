@@ -81,5 +81,14 @@ namespace SmartSql.Starter.API.Controllers
                 Body = _userRepository.GetById(reqMsg.Id)
             };
         }
+
+        [HttpPost]
+        public ResponseMessageWraper<User> GetById_RealSql([FromBody]GetByIdRequest reqMsg)
+        {
+            return new ResponseMessageWraper<User>
+            {
+                Body = _userRepository.GetById_RealSql(reqMsg.Id)
+            };
+        }
     }
 }

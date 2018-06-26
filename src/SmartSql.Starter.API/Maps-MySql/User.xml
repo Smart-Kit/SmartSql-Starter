@@ -1,64 +1,118 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+*******************************
+ Create By Ahoo Wang 
+ Date 2018-06-26 15:26
+*******************************
+-->
 <SmartSqlMap Scope="User"  xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
   <Statements>
     <Statement Id="QueryParams">
       <Where>
+        <IsNotEmpty Prepend="And" Property="EqUserName">
+          T.UserName=$EqUserName
+        </IsNotEmpty>
         <IsNotEmpty Prepend="And" Property="UserName">
           T.UserName Like Concat('%',$UserName,'%')
         </IsNotEmpty>
       </Where>
-      <Switch Prepend="Order By" Property="OrderBy">
-        <Default>
-          T.Id Desc
-        </Default>
-      </Switch>
     </Statement>
-    <Statement Id="Add">
-      Insert Into T_User
+
+
+    <!--新增-->
+    <Statement Id="Insert">
+      INSERT INTO T_User
       (UserName
       ,Password
       ,Status
       ,LastLoginTime
       ,CreationTime)
-      Values
-      ($UserName
-      ,$Password
-      ,$Status
-      ,$LastLoginTime
-      ,$CreationTime)
+      VALUES
+      (?UserName
+      ,?Password
+      ,?Status
+      ,?LastLoginTime
+      ,?CreationTime)
       ;Select Last_Insert_Id();
     </Statement>
-    <Statement Id="Remove">
 
+    <!--删除-->
+    <Statement Id="Delete">
+      Delete FROM  T_User
+      Where Id=?Id
     </Statement>
+
+
+    <!--更新-->
     <Statement Id="Update">
+      UPDATE T_User
+      <Set>
+        <IsProperty Prepend="," Property="UserName">
+          UserName = ?UserName
+        </IsProperty>
+        <IsProperty Prepend="," Property="Password">
+          Password = ?Password
+        </IsProperty>
+        <IsProperty Prepend="," Property="Status">
+          Status = ?Status
+        </IsProperty>
+        <IsProperty Prepend="," Property="LastLoginTime">
+          LastLoginTime = ?LastLoginTime
+        </IsProperty>
+        <IsProperty Prepend="," Property="CreationTime">
+          CreationTime = ?CreationTime
+        </IsProperty>
+      </Set>
+      Where Id=?Id
+    </Statement>
 
+    <!--获取数据列-->
+    <Statement Id="Quyer">
+      SELECT T.* From T_User T
+      <Include RefId="QueryParams"/>
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.Id Desc
+        </Default>
+      </Switch>
+      <IsNotEmpty Prepend="Limit" Property="Taken">?Taken</IsNotEmpty>
     </Statement>
-    <Statement Id="DyUpdate">
 
-    </Statement>
-    <Statement Id="Query">
-      Select T.* From T_User T
-      <Include RefId="QueryParams"></Include>
-      <IsNotEmpty Prepend="Limit" Property="Taken">$Taken</IsNotEmpty>
-    </Statement>
+    <!--获取分页数据-->
     <Statement Id="QueryByPage">
       Select T.*
       From T_User T
       <Include RefId="QueryParams"/>
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.Id Desc
+        </Default>
+      </Switch>
       Limit ?Offset,?PageSize
     </Statement>
+
+    <!--获取记录数-->
     <Statement Id="GetRecord">
-      Select Count(T.Id) From T_User T
-      <Include RefId="QueryParams"></Include>
+      Select Count(1) From T_User T
+      <Include RefId="QueryParams"/>
     </Statement>
-    <Statement Id="Exists">
-      Select Count(T.Id) From T_User T
+
+    <!--获取表映射实体-->
+    <Statement Id="GetEntity">
+      Select T.* From T_User T
       <Where>
-        <IsNotEmpty Prepend="And" Property="UserName">
-          T.UserName=$UserName
+        <IsNotEmpty Prepend="And" Property="Id">
+          T.Id=?Id
         </IsNotEmpty>
       </Where>
+      Limit 1
     </Statement>
+
+    <!--是否存在该记录-->
+    <Statement Id="IsExist">
+      Select Count(*) From T_User T
+      <Include RefId="QueryParams"/>
+    </Statement>
+
   </Statements>
 </SmartSqlMap>

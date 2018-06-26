@@ -7,25 +7,25 @@ namespace SmartSql.Starter.Service
 {
     public class UserService
     {
-        private readonly ISmartSqlMapper _smartSqlMapper;
-        private readonly IUserRepository _userRepository;
+        private readonly ISmartSqlMapper smartSqlMapper;
+        private readonly IUserRepository userRepository;
 
         public UserService(
              ISmartSqlMapper smartSqlMapper
             , IUserRepository userRepository)
         {
-            _smartSqlMapper = smartSqlMapper;
-            _userRepository = userRepository;
+            this.smartSqlMapper = smartSqlMapper;
+            this.userRepository = userRepository;
         }
 
         public long Add(AddRequest request)
         {
-            int existsNum = _userRepository.Exists(new { request.UserName });
-            if (existsNum > 0)
+            bool isExist = userRepository.IsExist(new { EqUserName = request.UserName });
+            if (isExist)
             {
                 throw new ArgumentException($"{nameof(request.UserName)} has already existed!");
             }
-            return _userRepository.Add(new Entitiy.User
+            return userRepository.Insert(new Entitiy.User
             {
                 UserName = request.UserName,
                 Password = request.Password,
@@ -38,15 +38,16 @@ namespace SmartSql.Starter.Service
         {
             try
             {
-                _smartSqlMapper.BeginTransaction();
+                smartSqlMapper.BeginTransaction();
                 //Biz();
-                _smartSqlMapper.CommitTransaction();
+                smartSqlMapper.CommitTransaction();
             }
             catch (Exception ex)
             {
-                _smartSqlMapper.RollbackTransaction();
+                smartSqlMapper.RollbackTransaction();
                 throw ex;
             }
         }
+
     }
 }

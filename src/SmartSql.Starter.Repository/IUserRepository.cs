@@ -6,21 +6,12 @@ using System.Collections.Generic;
 
 namespace SmartSql.Starter.Repository
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User, long>
     {
-        long Add(User entity);
-        int Remove(User entity);
-        int Update(User entity);
-        int DyUpdate(object reqParams);
-        IEnumerable<User> Query(object reqParams);
+        new long Insert(User entity);
         IEnumerable<T> Query<T>(object reqParams);
-        IEnumerable<User> QueryByPage(object reqParams);
         IEnumerable<T> QueryByPage<T>(object reqParams);
-        [Statement(Execute = ExecuteBehavior.ExecuteScalar)]
-        int GetRecord(object reqParams);
-        [Statement(Execute = ExecuteBehavior.ExecuteScalar)]
-        int Exists(object reqParams);
         [Statement(Sql = "Select Top 1 T.* From T_User T Where T.Id=@id")]
-        User GetById(long id);
+        User GetById_RealSql(long id);
     }
 }
