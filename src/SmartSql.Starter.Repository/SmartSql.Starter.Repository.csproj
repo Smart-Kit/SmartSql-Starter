@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SmartSql" Version="3.3.8" />
+    <PackageReference Include="SmartSql" Version="3.3.11" />
     <PackageReference Include="SmartSql.DyRepository" Version="3.3.8" />
   </ItemGroup>
 
