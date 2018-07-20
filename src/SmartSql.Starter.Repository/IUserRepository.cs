@@ -13,5 +13,13 @@ namespace SmartSql.Starter.Repository
         IEnumerable<T> QueryByPage<T>(object reqParams);
         [Statement(Sql = "Select Top 1 T.* From T_User T Where T.Id=@id")]
         User GetById_RealSql(long id);
+
+
+        int InsertExtendData(UserExtendData extendData);
+
+        int UpdateExtendData(UserExtendData extendData);
+
+        UserExtendData GetExtendData([Param("UserId")]long userId);
+
     }
 }

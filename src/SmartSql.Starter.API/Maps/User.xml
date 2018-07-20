@@ -2,35 +2,42 @@
 <!--
 *******************************
  Create By Ahoo Wang 
- Date 2018-06-26 15:23
+ Date 2018-07-20 21:43
 *******************************
 -->
 <SmartSqlMap Scope="User"  xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+  <ParameterMaps>
+    <ParameterMap Id="UserExtendParameterMap">
+      <Parameter Property="Info" TypeHandler="Json"/>
+    </ParameterMap>
+  </ParameterMaps>
+  <ResultMaps>
+    <ResultMap Id="UserExtendResultMap">
+      <Result Column="Data" Property="Info" TypeHandler="Json"/>
+    </ResultMap>
+  </ResultMaps>
   <Statements>
     <Statement Id="QueryParams">
       <Where>
-        <IsNotEmpty Prepend="And" Property="EqUserName">
-          T.UserName=$EqUserName
-        </IsNotEmpty>
-        <IsNotEmpty Prepend="And" Property="UserName">
-          T.UserName Like Concat('%',$UserName,'%')
-        </IsNotEmpty>
+
       </Where>
     </Statement>
     <!--新增-->
     <Statement Id="Insert">
       INSERT INTO T_User
       (UserName
-      ,Password
+      ,Pwd
       ,Status
       ,LastLoginTime
-      ,CreationTime)
+      ,CreationTime
+      ,Deleted)
       VALUES
       (@UserName
-      ,@Password
+      ,@Pwd
       ,@Status
       ,@LastLoginTime
-      ,@CreationTime)
+      ,@CreationTime
+      ,@Deleted)
       ;Select Scope_Identity();
     </Statement>
 
@@ -48,8 +55,8 @@
         <IsProperty Prepend="," Property="UserName">
           UserName = @UserName
         </IsProperty>
-        <IsProperty Prepend="," Property="Password">
-          Password = @Password
+        <IsProperty Prepend="," Property="Pwd">
+          Pwd = @Pwd
         </IsProperty>
         <IsProperty Prepend="," Property="Status">
           Status = @Status
@@ -60,6 +67,9 @@
         <IsProperty Prepend="," Property="CreationTime">
           CreationTime = @CreationTime
         </IsProperty>
+        <IsProperty Prepend="," Property="Deleted">
+          Deleted = @Deleted
+        </IsProperty>
       </Set>
       Where Id=@Id
     </Statement>
@@ -68,7 +78,8 @@
     <Statement Id="Query">
       SELECT
       <IsNotEmpty Prepend="Top" Property="Taken">(@Taken)</IsNotEmpty>
-      T.* From T_User T With(NoLock)
+      T.Id,T.UserName,T.Pwd,T.Status,T.LastLoginTime,T.CreationTime,T.Deleted
+      From T_User T With(NoLock)
       <Include RefId="QueryParams"/>
       <Switch Prepend="Order By" Property="OrderBy">
         <Default>
@@ -79,7 +90,7 @@
 
     <!--获取分页数据-->
     <Statement Id="QueryByPage">
-      Select TT.* From
+      Select TT.Id,TT.UserName,TT.Pwd,TT.Status,TT.LastLoginTime,TT.CreationTime,TT.Deleted From
       (Select ROW_NUMBER() Over(Order By T.Id Desc) Row_Index,T.* From T_User T With(NoLock)
       <Include RefId="QueryParams"/>) TT
       Where TT.Row_Index Between ((@PageIndex-1)*@PageSize+1) And (@PageIndex*@PageSize)
@@ -93,7 +104,8 @@
 
     <!--获取表映射实体-->
     <Statement Id="GetEntity">
-      Select Top 1 T.* From T_User T With(NoLock)
+      Select Top 1 T.Id,T.UserName,T.Pwd,T.Status,T.LastLoginTime,T.CreationTime,T.Deleted
+      From T_User T With(NoLock)
       <Where>
         <IsNotEmpty Prepend="And" Property="Id">
           T.Id=@Id
@@ -107,5 +119,20 @@
       <Include RefId="QueryParams"/>
     </Statement>
 
+    <Statement Id="InsertExtendData" ParameterMap="UserExtendParameterMap">
+      INSERT INTO T_UserExtendData
+      (UserId,Data)
+      VALUES
+      (@UserId,@Info)
+    </Statement>
+    <Statement Id="UpdateExtendData" ParameterMap="UserExtendParameterMap">
+      UPDATE T_UserExtendData
+      Set Data = @Info
+      Where UserId=@UserId
+    </Statement>
+    <Statement Id="GetExtendData" ResultMap="UserExtendResultMap">
+      Select T.UserId,T.Data From T_UserExtendData T
+      Where T.UserId=@UserId
+    </Statement>
   </Statements>
 </SmartSqlMap>

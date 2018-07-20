@@ -10,6 +10,6 @@ namespace SmartSql.Starter.API.Message.Request.User
         [Required]
         public string UserName { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string Pwd { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace SmartSql.Starter.Service
         private readonly IUserRepository _userRepository;
 
         public UserService(
-             ITransaction  transaction
+             ITransaction transaction
             , IUserRepository userRepository)
         {
             _transaction = transaction;
@@ -28,9 +28,28 @@ namespace SmartSql.Starter.Service
             return _userRepository.Insert(new Entitiy.User
             {
                 UserName = request.UserName,
-                Password = request.Password,
+                Pwd = request.Pwd,
                 Status = Entitiy.UserStatus.Ok,
                 CreationTime = DateTime.Now,
+            });
+        }
+
+
+
+        public int AddExtendData(AddExtendDataRequest request)
+        {
+            return _userRepository.InsertExtendData(new Entitiy.UserExtendData
+            {
+                UserId = request.UserId,
+                Info = request.Info
+            });
+        }
+        public int UpdateExtendData(UpdateExtendDataRequest request)
+        {
+            return _userRepository.UpdateExtendData(new Entitiy.UserExtendData
+            {
+                UserId = request.UserId,
+                Info = request.Info
             });
         }
 

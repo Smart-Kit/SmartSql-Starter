@@ -90,5 +90,33 @@ namespace SmartSql.Starter.API.Controllers
                 Body = _userRepository.GetById_RealSql(reqMsg.Id)
             };
         }
+
+        #region Extend
+        [HttpPost]
+        public ResponseMessageWraper<int> AddExtendData([FromBody]AddExtendDataRequest reqMsg)
+        {
+            return new ResponseMessageWraper<int>
+            {
+                Body = _userService.AddExtendData(reqMsg)
+            };
+        }
+        [HttpPost]
+        public ResponseMessageWraper<int> UpdateExtendData([FromBody]UpdateExtendDataRequest reqMsg)
+        {
+            return new ResponseMessageWraper<int>
+            {
+                Body = _userService.UpdateExtendData(reqMsg)
+            };
+        }
+
+        [HttpPost]
+        public ResponseMessageWraper<UserExtendData> GetExtendData([FromBody]GetExtendDataRequest reqMsg)
+        {
+            return new ResponseMessageWraper<UserExtendData>
+            {
+                Body = _userRepository.GetExtendData(reqMsg.UserId)
+            };
+        }
+        #endregion
     }
 }
