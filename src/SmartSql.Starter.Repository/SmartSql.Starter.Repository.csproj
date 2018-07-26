@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="SmartSql" Version="3.5.3" />
-    <PackageReference Include="SmartSql.DyRepository" Version="3.5.4" />
+    <PackageReference Include="SmartSql.DyRepository" Version="3.5.5" />
   </ItemGroup>
 
   <ItemGroup>

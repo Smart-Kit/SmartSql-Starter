@@ -134,5 +134,10 @@
       Select T.UserId,T.Data From T_UserExtendData T
       Where T.UserId=@UserId
     </Statement>
+
+    <Statement Id="GetUserInfo" ResultMap="UserExtendResultMap">
+      Select Top 1 T.Id,T.UserName,T.Pwd,T.Status,T.LastLoginTime,T.CreationTime,T.Deleted From T_User T Where T.Id=@UserId;
+      Select T.UserId,T.Data From T_UserExtendData T Where T.UserId=@UserId
+    </Statement>
   </Statements>
 </SmartSqlMap>

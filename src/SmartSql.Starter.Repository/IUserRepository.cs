@@ -21,5 +21,6 @@ namespace SmartSql.Starter.Repository
 
         UserExtendData GetExtendData([Param("UserId")]long userId);
 
+        (TUser, UserExtendData) GetUserInfo<TUser>([Param("UserId")]long userId);
     }
 }

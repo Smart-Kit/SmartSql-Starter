@@ -117,6 +117,19 @@ namespace SmartSql.Starter.API.Controllers
                 Body = _userRepository.GetExtendData(reqMsg.UserId)
             };
         }
+        [HttpPost]
+        public ResponseMessageWraper<GetUserInfoResponse> GetUserInfo([FromBody]GetByIdRequest reqMsg)
+        {
+            var data = _userRepository.GetUserInfo<Item>(reqMsg.Id);
+            return new ResponseMessageWraper<GetUserInfoResponse>
+            {
+                Body = new GetUserInfoResponse
+                {
+                    User = data.Item1,
+                    ExtendData = data.Item2
+                }
+            };
+        }
         #endregion
     }
 }
