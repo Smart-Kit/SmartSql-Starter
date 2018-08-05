@@ -6,6 +6,11 @@
 *******************************
 -->
 <SmartSqlMap Scope="User"  xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+  <Caches>
+    <Cache Id="UserCache" Type="Lru">
+      <FlushInterval Hours="1"/>
+    </Cache>
+  </Caches>
   <ParameterMaps>
     <ParameterMap Id="UserExtendParameterMap">
       <Parameter Property="Info" TypeHandler="Json"/>
@@ -16,11 +21,29 @@
       <Result Column="Data" Property="Info" TypeHandler="Json"/>
     </ResultMap>
   </ResultMaps>
+  <MultipleResultMaps>
+    <MultipleResultMap Id="GetUserInfoMRM">
+      <Result Index="1" MapId="UserExtendResultMap"/>
+    </MultipleResultMap>
+    <MultipleResultMap Id="QueryByPage_Map">
+      <Result Index="0" Property="Total"/>
+      <Result Index="1" Property="List"/>
+    </MultipleResultMap>
+  </MultipleResultMaps>
   <Statements>
     <Statement Id="QueryParams">
       <Where>
 
       </Where>
+    </Statement>
+    <Statement Id="QueryByPage_M" MultipleResultMap="QueryByPage_Map">
+      Select Count(1) From T_User T With(NoLock)
+      <Include RefId="QueryParams"/>
+      ;
+      Select TT.Id,TT.UserName,TT.Pwd,TT.Status,TT.LastLoginTime,TT.CreationTime,TT.Deleted From
+      (Select ROW_NUMBER() Over(Order By T.Id Desc) Row_Index,T.* From T_User T With(NoLock)
+      <Include RefId="QueryParams"/>) TT
+      Where TT.Row_Index Between ((@PageIndex-1)*@PageSize+1) And (@PageIndex*@PageSize)
     </Statement>
     <!--新增-->
     <Statement Id="Insert">
@@ -135,7 +158,7 @@
       Where T.UserId=@UserId
     </Statement>
 
-    <Statement Id="GetUserInfo" ResultMap="UserExtendResultMap">
+    <Statement Id="GetUserInfo" MultipleResultMap="GetUserInfoMRM">
       Select Top 1 T.Id,T.UserName,T.Pwd,T.Status,T.LastLoginTime,T.CreationTime,T.Deleted From T_User T Where T.Id=@UserId;
       Select T.UserId,T.Data From T_UserExtendData T Where T.UserId=@UserId
     </Statement>

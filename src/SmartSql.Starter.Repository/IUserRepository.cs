@@ -14,7 +14,6 @@ namespace SmartSql.Starter.Repository
         [Statement(Sql = "Select Top 1 T.* From T_User T Where T.Id=@id")]
         User GetById_RealSql(long id);
 
-
         int InsertExtendData(UserExtendData extendData);
 
         int UpdateExtendData(UserExtendData extendData);
@@ -22,5 +21,7 @@ namespace SmartSql.Starter.Repository
         UserExtendData GetExtendData([Param("UserId")]long userId);
 
         (TUser, UserExtendData) GetUserInfo<TUser>([Param("UserId")]long userId);
+
+        T QueryByPage_M<T>(object reqParams);
     }
 }

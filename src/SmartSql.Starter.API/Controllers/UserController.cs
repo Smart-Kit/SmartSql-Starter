@@ -73,6 +73,21 @@ namespace SmartSql.Starter.API.Controllers
                 }
             };
         }
+        /// <summary>
+        /// QueryByPage
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ResponseMessageWraper<QueryByPageResponse<Item>> QueryByPageM([FromBody] Message.Request.User.QueryByPageRequest request)
+        {
+            var result = _userRepository.QueryByPage_M<QueryByPageResponse<Item>>(request);
+            return new ResponseMessageWraper<QueryByPageResponse<Item>>
+            {
+                Body = result
+            };
+        }
+
         [HttpPost]
         public ResponseMessageWraper<User> GetById([FromBody]GetByIdRequest reqMsg)
         {

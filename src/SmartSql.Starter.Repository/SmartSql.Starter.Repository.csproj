@@ -1,13 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SmartSql" Version="3.5.3" />
-    <PackageReference Include="SmartSql.DyRepository" Version="3.5.5" />
+    <PackageReference Include="SmartSql.DyRepository" Version="3.6.0-rc1" />
   </ItemGroup>
+
+  <!--<ItemGroup>
+    <PackageReference Include="SmartSql" Version="3.6.0-pre8" />
+    <PackageReference Include="SmartSql.DyRepository" Version="3.6.0-pre8" />
+  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\SmartSql.Starter.Entitiy\SmartSql.Starter.Entitiy.csproj" />
