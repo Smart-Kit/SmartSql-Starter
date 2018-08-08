@@ -5,13 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SmartSql.DyRepository" Version="3.6.0-rc1" />
+    <PackageReference Include="SmartSql.DyRepository" Version="3.6.0" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <PackageReference Include="SmartSql" Version="3.6.0-pre8" />
-    <PackageReference Include="SmartSql.DyRepository" Version="3.6.0-pre8" />
-  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\SmartSql.Starter.Entitiy\SmartSql.Starter.Entitiy.csproj" />

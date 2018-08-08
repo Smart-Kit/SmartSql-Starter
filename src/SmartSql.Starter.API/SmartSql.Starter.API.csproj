@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="MySql.Data" Version="8.0.12" />
-    <PackageReference Include="SmartSql.DIExtension" Version="3.5.8" />
+    <PackageReference Include="SmartSql.DIExtension" Version="3.6.0" />
     <PackageReference Include="SmartSql.TypeHandler" Version="3.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>

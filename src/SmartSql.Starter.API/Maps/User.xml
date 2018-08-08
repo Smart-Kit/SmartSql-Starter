@@ -33,7 +33,12 @@
   <Statements>
     <Statement Id="QueryParams">
       <Where>
-
+        <IsNotEmpty Prepend="And" Property="EqUserName">
+          T.UserName=$EqUserName
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="UserName">
+          T.UserName Like Concat('%',$UserName,'%')
+        </IsNotEmpty>
       </Where>
     </Statement>
     <Statement Id="QueryByPage_M" MultipleResultMap="QueryByPage_Map">
