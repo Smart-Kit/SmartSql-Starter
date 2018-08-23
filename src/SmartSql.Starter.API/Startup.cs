@@ -46,9 +46,7 @@ namespace SmartSql.Starter.API
 
         private void RegisterRepository(IServiceCollection services)
         {
-            services.AddSmartSql();
-            services.AddRepositoryFactory();
-            services.AddRepositoryFromAssembly((options) =>
+            services.AddSmartSqlRepositoryFromAssembly((options) =>
             {
                 options.AssemblyString = "SmartSql.Starter.Repository";
             });

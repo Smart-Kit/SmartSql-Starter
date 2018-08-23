@@ -2,7 +2,6 @@
 using SmartSql.Starter.API.Message.Request.User;
 using SmartSql.Starter.Repository;
 using System;
-
 namespace SmartSql.Starter.Service
 {
     public class UserService
