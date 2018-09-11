@@ -54,17 +54,10 @@ namespace SmartSql.Starter.Service
 
         public void UseTransaction()
         {
-            try
+            _transaction.TransactionWrap(() =>
             {
-                _transaction.BeginTransaction();
-                //Biz();
-                _transaction.CommitTransaction();
-            }
-            catch (Exception ex)
-            {
-                _transaction.RollbackTransaction();
-                throw ex;
-            }
+                //BizCode();
+            });
         }
 
     }

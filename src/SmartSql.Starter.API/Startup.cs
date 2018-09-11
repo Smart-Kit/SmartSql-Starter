@@ -37,13 +37,11 @@ namespace SmartSql.Starter.API
                 options.Filters.Add<ValidateModelFilter>();
             })
             .SetCompatibilityVersion(CompatibilityVersion.Latest);
+            
             RegisterRepository(services);
             RegisterService(services);
             RegisterSwagger(services);
         }
-
-
-
         private void RegisterRepository(IServiceCollection services)
         {
             services.AddSmartSqlRepositoryFromAssembly((options) =>
